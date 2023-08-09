@@ -1,4 +1,6 @@
 "use client";
+
+import * as z from "zod";
 import { Store } from "@prisma/client";
 import { Trash } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -8,6 +10,10 @@ import { Separator } from "@/components/ui/separator";
 interface SettingsFormProps {
   initialData: Store;
 }
+
+const formSchema = z.object({
+  name: z.string().min(1),
+});
 
 export const SettingsForm: React.FC<SettingsFormProps> = ({ initialData }) => {
   return (
