@@ -37,7 +37,9 @@ export const BillboardForm: React.FC<BillboardFormProps> = ({
 
   const title = initialData ? "Edit billboard" : "Create billboard";
   const description = initialData ? "Edit a billboard" : "Add a new billboard";
-  const toastMessage = initialData ? "Billboard updated" : "Billboard created";
+  const toastMessage = initialData
+    ? "Billboard updated."
+    : "Billboard created.";
   const action = initialData ? "Save changes" : "Create";
 
   const formSchema = z.object({
@@ -85,8 +87,8 @@ export const BillboardForm: React.FC<BillboardFormProps> = ({
         `/api/${params.storeId}/billboards/${params.billboardId}`
       );
       router.refresh();
-      router.push("/");
-      toast.success("Billboard deleted");
+      router.push(`/${params.storeId}/billboards`);
+      toast.success("Billboard deleted.");
     } catch (error) {
       toast.error(
         "Make sure you removed all categories using this billboard first."
@@ -166,7 +168,6 @@ export const BillboardForm: React.FC<BillboardFormProps> = ({
           </Button>
         </form>
       </Form>
-      <Separator />
     </>
   );
 };
